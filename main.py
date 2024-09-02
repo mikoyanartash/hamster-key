@@ -7,8 +7,14 @@ from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler
 from datetime import datetime
 import server
 
+
+try:
+    HAMSTER_BOT_TOKEN = os.environ["HAMSTER_BOT_TOKEN"]
+except KeyError:
+    HAMSTER_BOT_TOKEN = "Token not available!"
+    #logger.info("Token not available!")
+    #raise
 # Token and channel ID (use environment variables in production)
-TOKEN_INSECURE = "7287179780:AAEJAn7-WmWGlj94s-yUl_XV55aUXOH5KmA"
 CHANNEL_ID = '@Daily_Combo_Secret_Code'
 
 # Environment variable retrieval
@@ -168,7 +174,7 @@ async def all(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 # Entry point for Google Cloud Functions
 if __name__ == '__main__':
-    application = ApplicationBuilder().token(TOKEN or TOKEN_INSECURE).build()
+    application = ApplicationBuilder().token(TOKEN or HAMSTER_BOT_TOKEN).build()
     server.logger.info("Server is running. Awaiting users...")
 
     application.add_handler(CommandHandler('start', start, block=False))
