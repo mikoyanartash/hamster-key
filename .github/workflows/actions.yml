@@ -32,8 +32,8 @@ jobs:
       run: |
         git config --global user.email "you@example.com"
         git config --global user.name "Your Name"
-        git tag -a v1.0.1 -m "Automated release"  # Replace with your desired version
-        git push origin v1.0.1
+        git tag -a ${{ github.ref_name }} -m "Automated release"  # Replace with your desired version
+        git push origin ${{ github.ref_name }}
         
     - name: Create Release
       id: create_release
