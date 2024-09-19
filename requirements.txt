@@ -1,3 +1,4 @@
 httpx
 python_telegram_bot
 loguru
+python-telegram-bot[job-queue]
